@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>kakarot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f2027 0%, #2c5364 100%);
+            color: #fff;
+            font-family: 'Trebuchet MS', Arial, sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            overflow-x: hidden;
+        }
+        .container {
+            margin-top: 40px;
+            background: rgba(20, 20, 20, 0.85);
+            border-radius: 24px;
+            box-shadow: 0 8px 40px #00bcd4aa, 0 1.5px 8px #ff980088;
+            padding: 40px 32px 32px 32px;
+            max-width: 420px;
+            width: 95vw;
+            animation: fadeIn 1.2s cubic-bezier(.68,-0.55,.27,1.55);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(60px) scale(0.95);}
+            to { opacity: 1; transform: translateY(0) scale(1);}
+        }
+        h1 {
+            color: #ff9800;
+            letter-spacing: 2px;
+            font-size: 2.5em;
+            margin-bottom: 0.2em;
+            text-shadow: 0 0 18px #ff9800aa, 0 2px 8px #00bcd4cc;
+            animation: glowTitle 2s infinite alternate;
+        }
+        @keyframes glowTitle {
+            from { text-shadow: 0 0 18px #ff9800aa, 0 2px 8px #00bcd4cc; }
+            to { text-shadow: 0 0 32px #ff9800, 0 2px 18px #00bcd4; }
+        }
+        .subtitle {
+            color: #00bcd4;
+            font-size: 1.3em;
+            margin-bottom: 1.2em;
+            letter-spacing: 1.5px;
+            text-shadow: 0 0 10px #00bcd4aa;
+            animation: fadeIn 1.5s 0.2s backwards;
+        }
+        .desc {
+            font-size: 1.1em;
+            margin-bottom: 1.5em;
+            color: #fff;
+            text-shadow: 0 0 8px #222, 0 0 2px #00bcd4;
+            animation: fadeIn 1.5s 0.4s backwards;
+        }
+        .goku-img {
+            width: 220px;
+            border-radius: 30px;
+            box-shadow: 0 0 40px 10px #00bcd4cc, 0 0 0 8px #ff980055;
+            margin: 24px auto 18px auto;
+            display: block;
+            animation: auraGlow 2.5s infinite alternate;
+            transition: transform 0.3s;
+        }
+        .goku-img:hover {
+            transform: scale(1.07) rotate(-2deg);
+            box-shadow: 0 0 60px 20px #00eaffcc, 0 0 0 12px #ff980088;
+        }
+        @keyframes auraGlow {
+            from { box-shadow: 0 0 40px 10px #00bcd4cc, 0 0 0 8px #ff980055; }
+            to { box-shadow: 0 0 80px 30px #00eaffcc, 0 0 0 16px #ff980088; }
+        }
+        .forms-title {
+            color: #00eaff;
+            font-size: 1.5em;
+            letter-spacing: 2px;
+            margin-top: 36px;
+            margin-bottom: 18px;
+            text-shadow: 0 0 10px #00eaff99;
+            animation: fadeIn 1.5s 0.6s backwards;
+        }
+        ul.forms-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 24px 0;
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            animation: fadeIn 1.5s 0.8s backwards;
+        }
+        ul.forms-list li {
+            background: linear-gradient(135deg, #222 60%, #00bcd4 100%);
+            color: #ffcc00;
+            padding: 14px 22px;
+            border-radius: 16px;
+            font-weight: bold;
+            font-size: 1.1em;
+            font-family: 'Trebuchet MS', Arial, sans-serif;
+            box-shadow: 0 2px 12px #00bcd4aa;
+            transition: transform 0.2s, box-shadow 0.2s, color 0.2s;
+            cursor: pointer;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        ul.forms-list li:nth-child(2) {
+            color: #00ffea;
+            background: linear-gradient(135deg, #222 60%, #00eaff 100%);
+        }
+        ul.forms-list li:nth-child(3) {
+            color: #ff4081;
+            background: linear-gradient(135deg, #222 60%, #ff4081 100%);
+        }
+        ul.forms-list li:hover {
+            transform: scale(1.13) rotate(-2deg);
+            box-shadow: 0 4px 24px #ff9800cc, 0 0 0 6px #00bcd4aa;
+            color: #fff;
+            border: 2px solid #ff9800;
+            z-index: 1;
+        }
+        .btn-animate {
+            background: linear-gradient(90deg, #ff9800 0%, #00bcd4 100%);
+            color: #fff;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 30px;
+            font-size: 1.2em;
+            font-family: 'Trebuchet MS', Arial, sans-serif;
+            font-weight: bold;
+            box-shadow: 0 4px 24px #00bcd4aa, 0 1.5px 8px #ff980088;
+            cursor: pointer;
+            margin-top: 18px;
+            margin-bottom: 10px;
+            transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+            animation: pulseBtn 2s infinite alternate;
+            outline: none;
+        }
+        @keyframes pulseBtn {
+            from { box-shadow: 0 4px 24px #00bcd4aa, 0 1.5px 8px #ff980088; }
+            to { box-shadow: 0 8px 40px #ff9800cc, 0 1.5px 18px #00bcd4cc; }
+        }
+        .btn-animate:active {
+            transform: scale(1.12);
+            background: linear-gradient(90deg, #ff9800 40%, #00eaff 100%);
+            box-shadow: 0 8px 40px #ff9800cc, 0 1.5px 18px #00bcd4cc;
+        }
+        /* Floating aura effect */
+        .aura {
+            position: absolute;
+            top: -60px; left: 50%; transform: translateX(-50%);
+            width: 320px; height: 320px;
+            pointer-events: none;
+            z-index: 0;
+            filter: blur(32px) brightness(1.2);
+            opacity: 0.5;
+            animation: auraFloat 4s infinite alternate;
+        }
+        @keyframes auraFloat {
+            from { transform: translateX(-50%) scale(1);}
+            to { transform: translateX(-50%) scale(1.08);}
+        }
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container { padding: 18px 4vw; }
+            .goku-img { width: 90vw; max-width: 260px;}
+            .aura { width: 90vw; max-width: 320px; height: 180px;}
+            ul.forms-list { flex-direction: column; gap: 10px;}
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div style="position:relative;">
+            <img src="https://pngimg.com/d/goku_PNG41.png" alt="Goku aura" class="aura">
+            <img src="500003545_2097625967407897_2820672676064657598_n.heic.jpg" alt="Anime character with spiky white hair and muscular build surrounded by glowing blue energy aura, wearing a torn orange and black martial arts uniform, standing confidently against a dark swirling background, conveying a powerful and intense atmosphere" class="goku-img">
+        </div>
+        <h1>Son Goku</h1>
+        <div class="subtitle">The Saiyan Who Never Gives Up</div>
+        <div class="desc">Goku is the real GOAT. His energy, courage, and kindness inspire everyone!</div>
+        <h2 class="forms-title">Forms</h2>
+        <ul class="forms-list">
+            <li>SSJ</li>
+            <li>SSJB</li>
+            <li>MUI</li>
+        </ul>
+        <button id="greatBtn" class="btn-animate">
+            Click Me!
+        </button>
+        <div class="desc" style="margin-top:18px; color:#ff9800; font-size:1.1em; text-shadow:0 0 8px #ff9800aa;">
+            Goku bhai ki jay
+        </div>
+        <div class="desc" style="color:#ff4081; font-size:1em; margin-top:4px;">
+            (Gojo is a chapri)
+        </div>
+    </div>
+    <footer style="margin-top:32px; color:#00bcd4; font-size:1em; text-align:center; letter-spacing:1px; opacity:0.7;">
+        Created by legend Koushik
+    </footer>
+    <script>
+        // Button animation
+        const btn = document.getElementById('greatBtn');
+        btn.addEventListener('click', function() {
+            btn.textContent = 'You are great!';
+            btn.style.transform = 'scale(1.18)';
+            btn.style.background = 'linear-gradient(90deg, #ff9800 40%, #00eaff 100%)';
+            setTimeout(() => {
+                btn.style.transform = 'scale(1)';
+                btn.style.background = '';
+                btn.textContent = 'Click Me!';
+            }, 1200);
+        });
+
+        // Forms list hover effect (aura burst)
+        document.querySelectorAll('.forms-list li').forEach(li => {
+            li.addEventListener('mouseenter', () => {
+                li.style.boxShadow = '0 0 32px 8px #00eaffcc, 0 0 0 8px #ff980088';
+            });
+            li.addEventListener('mouseleave', () => {
+                li.style.boxShadow = '';
+            });
+        });
+    </script>
+</body>
+</html>
